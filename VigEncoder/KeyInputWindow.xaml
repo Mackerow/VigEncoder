@@ -1,0 +1,19 @@
+﻿<Window x:Class="VigEncoder.KeyInputWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VigEncoder"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="KeyInputWindow" Height="105" Width="329">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="6*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox HorizontalAlignment="Left" Margin="26,33,0,0" Name="KeyInput" TextWrapping="Wrap" Text="Ключ" VerticalAlignment="Top" Width="120" BorderBrush="#FF181919" Background="#FFDADBDE"/>
+        <Button Content="Подтвердить" HorizontalAlignment="Left" Margin="146,32,0,0" VerticalAlignment="Top" Click="KeyInput_Click" Background="#FF75E638" Grid.ColumnSpan="2"/>
+
+    </Grid>
+</Window>
