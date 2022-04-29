@@ -13,7 +13,7 @@
                 <DropShadowEffect/>
             </Button.Effect>
         </Button>
-        <TextBox HorizontalAlignment="Left" Margin="10,70,0,0" TextWrapping="Wrap" Text="" IsReadOnly="True" Name="txtFilePath" VerticalAlignment="Top" Width="746" Background="#FFE2E5F1" Height="119" BorderBrush="Black">
+        <TextBox HorizontalAlignment="Left" Margin="10,70,0,0" TextWrapping="Wrap" Text="" Name="txtFileLine" VerticalAlignment="Top" Width="746" Background="#FFE2E5F1" Height="119" BorderBrush="Black">
             <TextBox.Effect>
                 <DropShadowEffect/>
             </TextBox.Effect>

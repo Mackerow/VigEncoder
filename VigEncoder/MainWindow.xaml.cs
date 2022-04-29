@@ -1,11 +1,8 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Data;
 using System.IO;
 using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace VigEncoder
 {
@@ -24,7 +21,6 @@ namespace VigEncoder
         {
             InitializeComponent();
         }
-
         private async void OpenFile_Click(object sender, RoutedEventArgs e)
         {
             openfile = new OpenFileDialog
@@ -33,18 +29,18 @@ namespace VigEncoder
                 Filter = "(.txt)|*.txt"
             };
             browsefile = openfile.ShowDialog();
-            txtFilePath.Text = openfile.FileName;
-            if (txtFilePath.Text == "")
+            txtFileLine.Text = openfile.FileName;
+            if (txtFileLine.Text == "")
             {
                 MessageBox.Show("Вы не выбрали файл!");
             }
             else
             {
-                using (StreamReader reader = new StreamReader(txtFilePath.Text, Encoding.UTF8))
+                using (StreamReader reader = new StreamReader(txtFileLine.Text, Encoding.UTF8))
                 {
                     line = await reader.ReadToEndAsync();
                 }
-                txtFilePath.Text = line;
+                txtFileLine.Text = line;
             }
         }
         private void WindowKeyInput_Click(object sender, RoutedEventArgs e)
@@ -53,10 +49,9 @@ namespace VigEncoder
             window.ShowDialog();
             KeyOutput.Text = KeyInput;
         }
-
         private void Encode_Click(object sender, RoutedEventArgs e)
         {
-            if (line==null)
+            if (txtFileLine.Text == null)
             {
                 MessageBox.Show("Строчка пуста! Нечего шифровать!");
                 return;
@@ -66,20 +61,20 @@ namespace VigEncoder
                 MessageBox.Show("Ключ пустой! Нечем шифровать!");
                 return;
             }
-            result = (VigenerCode.Encode(line, KeyInput));
-            OutPutCipher.Text=result;
+            result = (VigenerCode.Encode(txtFileLine.Text, KeyInput));
+            OutPutCipher.Text = result;
         }
 
         private void SaveCoding_Click(object sender, RoutedEventArgs e)
         {
-            if (result==null)
+            if (result == null)
             {
                 MessageBox.Show("Результата нет! Нечего записывать!");
                 return;
             }
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Text file (*.txt)|*.txt";
-            if(saveFileDialog.ShowDialog() == true)
+            if (saveFileDialog.ShowDialog() == true)
             {
                 StreamWriter file = new StreamWriter(saveFileDialog.FileName, true, Encoding.UTF8);
                 file.WriteLine(result);
@@ -90,17 +85,17 @@ namespace VigEncoder
 
         private void Decode_Click(object sender, RoutedEventArgs e)
         {
-            if (line == null)
+            if (txtFileLine.Text == null)
             {
-                MessageBox.Show("Строчка пуста! Нечего шифровать!");
+                MessageBox.Show("Строчка пуста! Нечего дешифровать!");
                 return;
             }
             if (KeyInput == null)
             {
-                MessageBox.Show("Ключ пустой! Нечем шифровать!");
+                MessageBox.Show("Ключ пустой! Нечем дешифровать!");
                 return;
             }
-            result = (VigenerCode.Decode(line, KeyInput));
+            result = (VigenerCode.Decode(txtFileLine.Text, KeyInput));
             OutPutCipher.Text = result;
         }
     }
